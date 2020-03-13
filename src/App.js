@@ -4,6 +4,8 @@ import uuid from 'react-uuid';
 import './App.css';
 import Header from './components/layout/Header';
 import About from './components/pages/About';
+import TodoList from './TodoList';
+import MemonryGame from './MemoryGame';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
 
@@ -62,13 +64,9 @@ class App extends Component {
         <div className="App">
           <div className="container">
             <Header />
-            <Route exact path="/" render={props => (
-              <React.Fragment>
-                <AddTodo addTodo={this.addTodo} />
-                <Todos todos={this.state.todos} markComplete={this.markComplete} deleteTask={this.deleteTask} />
-              </React.Fragment>
-            )} />
+            <Route exact path="/" component={MemonryGame}/>
             <Route path="/about" component={About} />
+            <Route path="/todo" component={TodoList} />
           </div>
         </div>
       </Router>
