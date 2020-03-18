@@ -5,7 +5,7 @@ import './App.css';
 import Header from './components/layout/Header';
 import About from './components/pages/About';
 import TodoList from './TodoList';
-import MemonryGame from './MemoryGame';
+import MemoryGame from './MemoryGame';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
 
@@ -64,7 +64,7 @@ class App extends Component {
         <div className="App">
           <div className="container">
             <Header />
-            <Route exact path="/" component={MemonryGame}/>
+            <Route exact path="/" component={MemoryGame}/>
             <Route path="/about" component={About} />
             <Route path="/todo" component={TodoList} />
           </div>

@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
+import Board from './components/Board'
 
 export class MemoryGame extends Component {
     render() {
         return (
-            <div>
-                <h2>Welcome to the memory game</h2>
-            </div>
+            <React.Fragment>
+                <div>
+                    <Board />
+                </div>
+
+            </React.Fragment>
         )
     }
 }
