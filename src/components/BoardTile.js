@@ -6,14 +6,8 @@ export class BoardTile extends Component {
     render () {
         const {id, content} = this.props.tile;
         return (
-            <div>
-                <a href="javascript:void(0)" onClick={this.props.flipTile.bind(this, id)}>
-                    <div>
-                        <p>
-                            {content}
-                        </p>
-                    </div>
-                </a>
+            <div className={"tile" + id}>
+                <a href="javascript:void(0)" onClick={this.props.flipTile.bind(this, id)}>{content}</a>
             </div>
         )
     }

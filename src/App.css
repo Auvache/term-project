@@ -1,3 +1,19 @@
+h1 {
+  font-size: 48px;
+}
+h2 {
+  font-size: 36px;
+  margin: 0;
+}
+@media (max-width: 992px) {
+  h1 {font-size: 38px;}
+  h2 {font-size: 24px;}
+}
+@media (max-width: 492px) {
+  h1 {font-size: 32px;}
+  h2 {font-size: 20px;}
+}
+
 .btn {
   display: inline-block;
 }
@@ -5,3 +21,130 @@
 .btn:hover {
   background-color: #f4f4f4;
 }
+
+.header-section {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
+.link-style {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* BEGIN memory grid styles */
+.head { grid-area: head;}
+.tile1 { grid-area: tile1; }
+.tile2 { grid-area: tile2; }
+.tile3 { grid-area: tile3; }
+.tile4 { grid-area: tile4; }
+.tile5 { grid-area: tile5; }
+.tile6 { grid-area: tile6; }
+.tile7 { grid-area: tile7; }
+.tile8 { grid-area: tile8; }
+.tile9 { grid-area: tile9; }
+.tile10 { grid-area: tile10; }
+.tile11 { grid-area: tile11; }
+.tile12 { grid-area: tile12; }
+.tile13 { grid-area: tile13; }
+.tile14 { grid-area: tile14; }
+.tile15 { grid-area: tile15; }
+.tile16 { grid-area: tile16; }
+.tile17 { grid-area: tile17; }
+.tile18 { grid-area: tile18; }
+.tile19 { grid-area: tile19; }
+.tile20 { grid-area: tile20; }
+.tile21 { grid-area: tile21; }
+.tile22 { grid-area: tile22; }
+.tile23 { grid-area: tile23; }
+.tile24 { grid-area: tile24; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'head head head head head head'
+    'tile1 tile2 tile3 tile4 tile5 tile6'
+    'tile7 tile8 tile9 tile10 tile11 tile12'
+    'tile13 tile14 tile15 tile16 tile17 tile18'
+    'tile19 tile20 tile21 tile22 tile23 tile24';
+  grid-gap: 10px;
+  padding: 10px;
+  width: 1250px;
+  margin: 24px auto;
+
+}
+.grid-container > div.head {
+  background-color: #fff;
+  text-align: left;
+  border: none;
+  height: auto;
+  width: auto;
+  margin: 0;
+}
+.grid-container > div {
+  background-color: #f4f4f4;
+  text-align: center;
+  border: 1px solid #333;
+  box-sizing: border-box;
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+}
+.grid-container img {
+  width: 100%;
+  height: 100%;
+}
+@media (max-width: 1300px) {
+  .grid-container {
+    width: 968px;  
+  }
+  .grid-container > div {
+    height: 150px;
+    width: 150px;
+  }
+}
+@media (max-width: 1000px) {
+  .grid-container {
+    grid-template-areas:
+    'head head head head'
+    'tile1 tile2 tile3 tile4'
+    'tile5 tile6 tile7 tile8'
+    'tile9 tile10 tile11 tile12'
+    'tile13 tile14 tile15 tile16'
+    'tile17 tile18 tile19 tile20'
+    'tile21 tile22 tile23 tile24';
+    width: 630px;
+  }
+}
+@media (max-width: 676px) {
+  .grid-container {
+    width: 432px;
+  }
+  .grid-container > div {
+    height: 100px;
+    width: 100px;
+  }
+}
+@media (max-width: 492px) {
+  .grid-container {
+    width: 332px;
+  }
+  .grid-container > div {
+    height: 75px;
+    width: 75px;
+  }
+}
+@media (max-width: 370px) {
+  .grid-container {
+    width: 270px;
+  }
+  .grid-container > div {
+    height: 60px;
+    width: 60px;
+  }
+}
+
+/* END memory grid styles */
+

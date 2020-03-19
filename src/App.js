@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import uuid from 'react-uuid';
 import './App.css';
 import Header from './components/layout/Header';
 import About from './components/pages/About';
@@ -21,7 +20,6 @@ class App extends Component {
           </div>
         </div>
       </Router>
-
     );
   }
 }

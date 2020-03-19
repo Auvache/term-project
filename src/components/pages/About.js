@@ -3,7 +3,7 @@ import React from 'react'
 function About() {
     return (
         <React.Fragment>
-            <h1>About</h1>
+            <h2>About</h2>
             <p>This is my react tutorial</p>
         </React.Fragment>
     )
