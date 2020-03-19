@@ -1,13 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class BoardTile extends Component {
+export class BoardTile extends Component {
 
     render () {
+        const {id, content} = this.props.tile;
         return (
-            <div>This is the tile</div>
-        );
+            <div>
+                <a href="javascript:void(0)" onClick={this.props.flipTile.bind(this, id)}>
+                    <div>
+                        <p>
+                            {content}
+                        </p>
+                    </div>
+                </a>
+            </div>
+        )
     }
+}
+
+BoardTile.propTypes = {
+    tile: PropTypes.object.isRequired
 }
 
 export default BoardTile;

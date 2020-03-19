@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import { tsImportEqualsDeclaration } from '@babel/types';
 
 export class TodoItem extends Component {
     getStyle = () => {

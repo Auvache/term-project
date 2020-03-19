@@ -2,13 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 // import uuid from 'uuid';
 import './App.css';
-import Header from './components/layout/Header';
-import About from './components/pages/About';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
-
-
-
 
 class TodoList extends Component {
   idCount = 1;
@@ -53,9 +48,7 @@ class TodoList extends Component {
         <React.Fragment>
             <AddTodo addTodo={this.addTodo} />
             <Todos todos={this.state.todos} markComplete={this.markComplete} deleteTask={this.deleteTask} />
-            
         </React.Fragment>
-
     );
   }
 }
