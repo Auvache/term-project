@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 export class BoardTile extends Component {
 
     render () {
-        const {id, content} = this.props.tile;
+        const {id, content, cardClass} = this.props.tile;
         return (
             <div className={"tile" + id}>
-                <a href="javascript:void(0)" onClick={this.props.flipTile.bind(this, id)}>{content}</a>
+                <a href="#" onClick={this.props.flipCard.bind(this, this.props.tile)}>
+                <img src={content} className={cardClass} />
+                </a>
             </div>
         )
     }

@@ -6,7 +6,7 @@ class Board extends Component {
 
     render () {
         return this.props.tiles.map((tile) => (
-            <BoardTile key={tile.id} tile={tile} flipTile={this.props.flipTile}/>
+            <BoardTile key={tile.id} tile={tile} flipCard={this.props.flipCard} />
         ));
     }
 }

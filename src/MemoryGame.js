@@ -16,42 +16,65 @@ import Img12 from './img/img12.jpg';
 
 class MemoryGame extends Component {
     ids = [8, 17, 11, 13, 14, 24, 22, 10, 1, 20, 4, 9, 23, 3, 16, 18, 19, 5, 7, 2, 12, 15, 6, 21];
-    // TODO: randomize the order of the ideas
-
     state = {
         tiles: [
-          {id: this.ids[0], content: <img src={Img1} />, faceup: false},
-          {id: this.ids[1], content: <img src={Img2} />, faceup: false},
-          {id: this.ids[2], content: <img src={Img3} />, faceup: false},
-          {id: this.ids[3], content: <img src={Img4} />, faceup: false},
-          {id: this.ids[4], content: <img src={Img5} />, faceup: false},
-          {id: this.ids[5], content: <img src={Img6} />, faceup: false},
-          {id: this.ids[6], content: <img src={Img7} />, faceup: false},
-          {id: this.ids[7], content: <img src={Img8} />, faceup: false},
-          {id: this.ids[8], content: <img src={Img9} />, faceup: false},
-          {id: this.ids[9], content: <img src={Img10} />, faceup: false},
-          {id: this.ids[10], content: <img src={Img11} />, faceup: false},
-          {id: this.ids[11], content: <img src={Img12} />, faceup: false},
-          {id: this.ids[12], content: <img src={Img1} />, faceup: false},
-          {id: this.ids[13], content: <img src={Img2} />, faceup: false},
-          {id: this.ids[14], content: <img src={Img3} />, faceup: false},
-          {id: this.ids[15], content: <img src={Img4} />, faceup: false},
-          {id: this.ids[16], content: <img src={Img5} />, faceup: false},
-          {id: this.ids[17], content: <img src={Img6} />, faceup: false},
-          {id: this.ids[18], content: <img src={Img7} />, faceup: false},
-          {id: this.ids[19], content: <img src={Img8} />, faceup: false},
-          {id: this.ids[20], content: <img src={Img9} />, faceup: false},
-          {id: this.ids[21], content: <img src={Img10} />, faceup: false},
-          {id: this.ids[22], content: <img src={Img11} />, faceup: false},
-          {id: this.ids[23], content: <img src={Img12} />, faceup: false}       
+          {id: this.ids[0], content: Img1, cardClass: 'facedown', faceup: false},
+          {id: this.ids[1], content: Img2, cardClass: 'facedown', faceup: false},
+          {id: this.ids[2], content: Img3, cardClass: 'facedown', faceup: false},
+          {id: this.ids[3], content: Img4, cardClass: 'facedown', faceup: false},
+          {id: this.ids[4], content: Img5, cardClass: 'facedown', faceup: false},
+          {id: this.ids[5], content: Img6, cardClass: 'facedown', faceup: false},
+          {id: this.ids[6], content: Img7, cardClass: 'facedown', faceup: false},
+          {id: this.ids[7], content: Img8, cardClass: 'facedown', faceup: false},
+          {id: this.ids[8], content: Img9, cardClass: 'facedown', faceup: false},
+          {id: this.ids[9], content: Img10, cardClass: 'facedown', faceup: false},
+          {id: this.ids[10], content: Img11, cardClass: 'facedown', faceup: false},
+          {id: this.ids[11], content: Img12, cardClass: 'facedown', faceup: false},
+          {id: this.ids[12], content: Img1, cardClass: 'facedown', faceup: false},
+          {id: this.ids[13], content: Img2, cardClass: 'facedown', faceup: false},
+          {id: this.ids[14], content: Img3, cardClass: 'facedown', faceup: false},
+          {id: this.ids[15], content: Img4, cardClass: 'facedown', faceup: false},
+          {id: this.ids[16], content: Img5, cardClass: 'facedown', faceup: false},
+          {id: this.ids[17], content: Img6, cardClass: 'facedown', faceup: false},
+          {id: this.ids[18], content: Img7, cardClass: 'facedown', faceup: false},
+          {id: this.ids[19], content: Img8, cardClass: 'facedown', faceup: false},
+          {id: this.ids[20], content: Img9, cardClass: 'facedown', faceup: false},
+          {id: this.ids[21], content: Img10, cardClass: 'facedown', faceup: false},
+          {id: this.ids[22], content: Img11, cardClass: 'facedown', faceup: false},
+          {id: this.ids[23], content: Img12, cardClass: 'facedown', faceup: false}
         ]
     }
 
-    flipTile = (id) => {
-        this.setState({tiles: this.state.tiles.map(tile => {
-            return tile;
-          })})
+    // TODO: animate the card flip
+    flipCard = (tile) => {
+        if (tile.faceup !== true) {
+            tile.faceup = true;
+            tile.cardClass = 'faceup';
+        } else {
+            tile.faceup = false;
+            tile.cardClass = 'facedown';
+        }
     }
+
+    // TODO: change state to newly shuffled cards
+    shuffle = () => {
+        let ids = this.ids;
+        let len = ids.length, temp, rand;
+        while (0 !== len) {
+            rand = Math.floor(Math.random() * len);
+          len -= 1;
+          temp = ids[len];
+          ids[len] = ids[rand];
+          ids[rand] = temp;
+        }
+        this.ids = ids;
+        console.log(this.ids);
+        // this.setState(this.ids, ids);
+      }
+    
+    // TODO: compare two tiles content and remove card if they match. Add a point if the cards are removed
+
+    // TODO: add a second player
 
     render() {
         return (
@@ -59,13 +82,14 @@ class MemoryGame extends Component {
                 <div className="grid-container">
                     <div className="head">
                         <h2>Play memory</h2>
-                        <a href="javascript:void(0)">Shuffle the cards</a>
+                        <a href="#" onClick={this.shuffle}>Shuffle the cards</a>
                     </div>
-                    <Board tiles={this.state.tiles} flipTile={this.flipTile}/>
+                    <Board tiles={this.state.tiles}  flipCard={this.flipCard} />
                 </div>
             </React.Fragment>
         )
     }
+
 }
 
 export default MemoryGame;
