@@ -34,13 +34,13 @@ h2 {
   text-decoration: none;
 }
 
-/* .facedown {
+.facedown {
   opacity: 0;
 }
 
 .faceup {
   opacity: 1;
-} */
+}
 
 /* BEGIN memory grid styles */
 .head { grid-area: head;}
