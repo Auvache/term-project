@@ -5,8 +5,9 @@ h2 {
   font-size: 36px;
   margin: 0;
 }
+
 @media (max-width: 992px) {
-  h1 {font-size: 38px;}
+  h1 {display: none;}
   h2 {font-size: 24px;}
 }
 @media (max-width: 492px) {
@@ -21,6 +22,14 @@ h2 {
 .btn:hover {
   background-color: #f4f4f4;
 }
+
+/* .start-button {
+  color: black;
+  background-color: #f4f4f4;
+  padding: 4px 8px;
+  margin: 8px;
+  border: 1px black solid;
+} */
 
 .header-section {
   background-color: #333;
@@ -40,6 +49,44 @@ h2 {
 
 .faceup {
   opacity: 1;
+}
+/* player score box styles */
+.scores-list {
+  position: relative; 
+  display: inline-flex; 
+  list-style: none; 
+  padding: 0;
+  margin: 0;
+}
+.player {
+  height: 100px;
+  width: 100px;
+  background-color: #f4f4f4;
+  color: black;
+  box-sizing: border-box;
+  border: 1px solid black;
+  text-align: center;
+  margin: 0 8px 8px 0;
+}
+
+.scores-list button,
+.scores-list button:focus {
+  border: none;
+  background-color: #fff;
+  outline: none;
+}
+
+.player p {
+  font-weight: 900;
+  font-size: 20px;
+  margin: 0 auto;
+}
+.scores {
+  font-size: 42px;
+  font-weight: 900;
+}
+.true {
+  border: 2px solid lawngreen;
 }
 
 /* BEGIN memory grid styles */
@@ -84,6 +131,7 @@ h2 {
 
 }
 .grid-container > div.head {
+  background-image: none;
   background-color: #fff;
   text-align: left;
   border: none;
@@ -92,9 +140,11 @@ h2 {
   margin: 0;
 }
 .grid-container > div {
-  background-color: #f4f4f4;
+  background-image: url('./img/vinyl.jpg');
+  background-color: #fff;
+  background-size: 100% 100%;
   text-align: center;
-  border: 1px solid #333;
+  /* border: 1px solid #333; */
   box-sizing: border-box;
   height: 200px;
   width: 200px;
@@ -103,8 +153,9 @@ h2 {
 .grid-container img {
   width: 100%;
   height: 100%;
+  border: 1px solid black;
 }
-@media (max-width: 1300px) {
+@media (max-width: 1500px) {
   .grid-container {
     width: 968px;  
   }
@@ -152,6 +203,11 @@ h2 {
     height: 60px;
     width: 60px;
   }
+}
+@media (max-height: 1200px) {
+  h1 {display: none;}
+  h2 {font-size: 24px;}
+  .grid-container {margin: 8px auto;}
 }
 
 /* END memory grid styles */

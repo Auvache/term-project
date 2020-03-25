@@ -4,9 +4,12 @@ import PropTypes from 'prop-types';
 class Player extends Component {
 
     render () {
-        const {name, score} = this.props.player;
+        const {id, name, score, hasTurn} = this.props.player;
         return (
-            <li onLoad={this.props.keepScore.bind(this, this.props.player)} >{name}: {score}</li>
+            <li className={'player'+ ' ' + hasTurn}>
+                <p onLoad={this.props.keepScore.bind(this, this.props.player)} >{name}</p>
+                <div className={'scores'}>{score}</div>
+            </li>
         );
     }
 }

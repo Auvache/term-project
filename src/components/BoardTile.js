@@ -8,7 +8,7 @@ export class BoardTile extends Component {
         return (
             <div className={"tile" + id}>
                 <a href="#" onClick={this.props.flipCard.bind(this, this.props.tile)}>
-                <img src={content} className={cardClass} />
+                <img src={content} className={cardClass} alt="" />
                 </a>
             </div>
         )

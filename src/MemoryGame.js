@@ -19,14 +19,14 @@ class MemoryGame extends Component {
     // set up the game
     ids = [8, 17, 11, 13, 14, 24, 22, 10, 1, 20, 4, 9, 23, 3, 16, 18, 19, 5, 7, 2, 12, 15, 6, 21];
     state = {
-        titleText: '',
+        pageTitle: 'Memory Game',
+        titleText: 'Ready to play memory?',
+        startButtonText: 'Shuffle and Start Game',
+        addPlayerText: '',
+        activePlayer: 0,
         faceupTiles: [],
         matchedTiles: [],
-        players: [
-            {id: 0, name: 'Player 1', score: 0, hasTurn: true},
-            {id: 1, name: 'Player 2', score: 0, hasTurn: false}
-        ],
-        activePlayer: {id:0, name: 'Ready to play memory?'},
+        players: [],
         tiles: [
           {id: this.ids[0], content: Img1, cardClass: 'faceup', faceup: false},
           {id: this.ids[1], content: Img2, cardClass: 'faceup', faceup: false},
@@ -53,6 +53,21 @@ class MemoryGame extends Component {
           {id: this.ids[22], content: Img11, cardClass: 'faceup', faceup: false},
           {id: this.ids[23], content: Img12, cardClass: 'faceup', faceup: false}
         ] 
+    }
+
+    // methods
+    addPlayer = () => {
+        let l = this.state.players.length;
+        if (l < 10) {
+            let l2 = l + 1;
+            let n = 'Player' + l2;
+            this.state.players.push({id: l, name: n, score: 0, hasTurn: false})
+            console.log(this.state.players)
+            this.setState({players: this.state.players})
+            if (l === 9) {
+                this.setState({addPlayerText: ''})
+            }
+        } 
     }
 
     compareTiles = () => {
@@ -90,11 +105,7 @@ class MemoryGame extends Component {
     }
 
     keepScore = () => {
-        if (this.state.activePlayer.name === this.state.players[0].name) {
-            this.state.players[0].score += 1;
-        } else {
-            this.state.players[1].score += 1;
-        }
+        this.state.players[this.state.activePlayer].score += 1;
     }
 
     shuffle = () => {
@@ -111,25 +122,16 @@ class MemoryGame extends Component {
         this.startGame();
     }
 
-    switchPlayers = () => {
-        if (this.state.activePlayer.name === this.state.players[0].name) {
-            this.setState({activePlayer: {id: 1, name: this.state.players[1].name}});
-        } else {
-            this.setState({activePlayer: {id: 0, name: this.state.players[0].name}});
-        }
-    }
-
-    // add button to show/hide add-player-box
-    displayAddPlayers = () => {
-        
-    }
-
     startGame = () => {
         this.setState({
-            titleText: '\'s turn',
+            titleText: '',
+            startButtonText: 'Shuffle and Start over',
+            addPlayerText: 'Add Player',
             faceupTiles: [],
             matchedTiles: [],
-            activePlayer: {id: 0, name: this.state.players[0].name},
+            players: [
+                {id: 0, name: 'Player 1', score: 0, hasTurn: true}
+            ],
             tiles: [
               {id: this.ids[0], content: Img1, cardClass: 'facedown', faceup: false},
               {id: this.ids[1], content: Img2, cardClass: 'facedown', faceup: false},
@@ -157,7 +159,24 @@ class MemoryGame extends Component {
               {id: this.ids[23], content: Img12, cardClass: 'facedown', faceup: false}
             ] 
         })
-        console.log(this.state.activePlayer)
+    }
+
+    switchPlayers = () => {
+        console.log('players just played');
+        console.log(this.state.players[this.state.activePlayer]);
+        this.state.players[this.state.activePlayer].hasTurn = false;
+        let i = this.state.activePlayer;
+        let l = this.state.players.length - 1;
+        if (i < l) {
+            i += 1; 
+        } else {
+            i = 0;
+        }
+        this.setState({activePlayer: i})
+
+        console.log('players turn');
+        this.state.players[this.state.activePlayer].hasTurn = true;
+        console.log(this.state.players[this.state.activePlayer]);
     }
 
     render() {
@@ -165,21 +184,22 @@ class MemoryGame extends Component {
             <React.Fragment>
                 <div className="grid-container">
                     <div className="head">
-                        <h2>{this.state.activePlayer.name}{this.state.titleText}</h2>
+                        
                         {/* <div id="add-player-box" >
                             <a href="#" onClick={this.displayAddPlayers} >Add a player here</a>
                         </div> */}
-                        <ul>
+                        <ul className="scores-list">
                             <PlayerScores players={this.state.players} keepScore={this.keepScore} />
+                            <li><button onClick={this.addPlayer}>{this.state.addPlayerText}</button></li>
                         </ul>
-                        <a href="#" onClick={this.shuffle}>Start Game</a>
+                        <h2>{this.state.titleText}</h2>
+                        <a href="#" className="start-button" onClick={this.shuffle}>{this.state.startButtonText}</a>
                     </div>
                     <Board tiles={this.state.tiles} flipCard={this.flipCard} />
                 </div>
             </React.Fragment>
         )
     }
-
 }
 
 export default MemoryGame;
