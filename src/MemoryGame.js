@@ -94,13 +94,15 @@ class MemoryGame extends Component {
 
     // TODO: animate the card flip
     flipCard = (tile) => {
-        if (tile.faceup !== true) {
-            tile.faceup = true;
-            tile.cardClass = 'faceup';
-        } 
-        this.state.faceupTiles.push(tile)
-        if (this.state.faceupTiles.length === 2) {
-            setTimeout(this.compareTiles, 1000)
+        if (this.state.faceupTiles.length < 3) {
+            if (tile.faceup !== true) {
+                tile.faceup = true;
+                tile.cardClass = 'faceup';
+                this.state.faceupTiles.push(tile)
+                if (this.state.faceupTiles.length === 2) {
+                    setTimeout(this.compareTiles, 1000)
+                }
+            } 
         }
     }
 
@@ -184,10 +186,6 @@ class MemoryGame extends Component {
             <React.Fragment>
                 <div className="grid-container">
                     <div className="head">
-                        
-                        {/* <div id="add-player-box" >
-                            <a href="#" onClick={this.displayAddPlayers} >Add a player here</a>
-                        </div> */}
                         <ul className="scores-list">
                             <PlayerScores players={this.state.players} keepScore={this.keepScore} />
                             <li><button onClick={this.addPlayer}>{this.state.addPlayerText}</button></li>
