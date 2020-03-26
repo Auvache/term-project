@@ -23,14 +23,6 @@ h2 {
   background-color: #f4f4f4;
 }
 
-/* .start-button {
-  color: black;
-  background-color: #f4f4f4;
-  padding: 4px 8px;
-  margin: 8px;
-  border: 1px black solid;
-} */
-
 .header-section {
   background-color: #333;
   color: #fff;
@@ -50,6 +42,7 @@ h2 {
 .faceup {
   opacity: 1;
 }
+
 /* player score box styles */
 .scores-list {
   position: relative; 

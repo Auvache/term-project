@@ -84,7 +84,25 @@ class MemoryGame extends Component {
     }
 
     endGame = () => {
-        console.log('end game functionality')
+        console.log('game over')
+        let l = this.state.players;
+        let winner = l[0];
+        for (let i = 0; i < l.length; i++) {
+            l[i].hasTurn = false;
+            if (l[i].score > winner.score) {
+                winner = l[i]
+            } 
+            // this doesn't account for ties between later players
+            // else if (l[i].score === winner.score && l[i] !== winner) {
+            //     for (let n = 0; n < l.length; n++) {
+            //         l[n].score = 'Tie Game. Play again';
+            //     }
+            //     return;
+            // }
+        }
+        console.log(winner)
+        winner.score = 'W';
+        winner.hasTurn = true;
     }
 
     flipBack = (t1,t2) => {
@@ -117,7 +135,7 @@ class MemoryGame extends Component {
         this.setState({gameOn: true})
         console.log(this.state.matchedTiles.length)
         if (this.state.matchedTiles.length === 24) {
-            console.log('game over')
+            console.log('all matched')
             this.endGame();
         }
     }
@@ -141,6 +159,7 @@ class MemoryGame extends Component {
             titleText: '',
             startButtonText: 'Shuffle and Start over',
             addPlayerText: 'Add Player',
+            activePlayer: 0,
             gameOn: true,
             faceupTiles: [],
             matchedTiles: [],
