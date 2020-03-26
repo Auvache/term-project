@@ -23,6 +23,7 @@ class MemoryGame extends Component {
         titleText: 'Ready to play memory?',
         startButtonText: 'Shuffle and Start Game',
         addPlayerText: '',
+        gameOn: false,
         activePlayer: 0,
         faceupTiles: [],
         matchedTiles: [],
@@ -62,7 +63,6 @@ class MemoryGame extends Component {
             let l2 = l + 1;
             let n = 'Player' + l2;
             this.state.players.push({id: l, name: n, score: 0, hasTurn: false})
-            console.log(this.state.players)
             this.setState({players: this.state.players})
             if (l === 9) {
                 this.setState({addPlayerText: ''})
@@ -74,15 +74,17 @@ class MemoryGame extends Component {
         let t1 = this.state.faceupTiles[0];
         let t2 = this.state.faceupTiles[1];
         if (t1.content === t2.content) {
-            console.log('match');
             this.state.matchedTiles.push(t1,t2);
             this.keepScore();
         } else {
-            console.log('not a match');
             setTimeout(this.flipBack(t1,t2), 500)
             this.switchPlayers();
         }
         this.setState({faceupTiles: []})
+    }
+
+    endGame = () => {
+        console.log('end game functionality')
     }
 
     flipBack = (t1,t2) => {
@@ -90,24 +92,34 @@ class MemoryGame extends Component {
         t1.cardClass = 'facedown';
         t2.faceup = false;
         t2.cardClass = 'facedown';
+        this.setState({gameOn: true})
     }
 
     // TODO: animate the card flip
     flipCard = (tile) => {
-        if (this.state.faceupTiles.length < 3) {
-            if (tile.faceup !== true) {
-                tile.faceup = true;
-                tile.cardClass = 'faceup';
-                this.state.faceupTiles.push(tile)
-                if (this.state.faceupTiles.length === 2) {
-                    setTimeout(this.compareTiles, 1000)
-                }
-            } 
+        if (this.state.gameOn) {
+            if (this.state.faceupTiles.length < 3) {
+                if (tile.faceup !== true) {
+                    tile.faceup = true;
+                    tile.cardClass = 'faceup';
+                    this.state.faceupTiles.push(tile)
+                    if (this.state.faceupTiles.length === 2) {
+                        this.setState({gameOn: false})
+                        setTimeout(this.compareTiles, 1000)
+                    }
+                } 
+            }
         }
     }
 
     keepScore = () => {
         this.state.players[this.state.activePlayer].score += 1;
+        this.setState({gameOn: true})
+        console.log(this.state.matchedTiles.length)
+        if (this.state.matchedTiles.length === 24) {
+            console.log('game over')
+            this.endGame();
+        }
     }
 
     shuffle = () => {
@@ -129,10 +141,11 @@ class MemoryGame extends Component {
             titleText: '',
             startButtonText: 'Shuffle and Start over',
             addPlayerText: 'Add Player',
+            gameOn: true,
             faceupTiles: [],
             matchedTiles: [],
             players: [
-                {id: 0, name: 'Player 1', score: 0, hasTurn: true}
+                {id: 0, name: 'Player 1', score: 0, hasTurn: true, isWinner: ''}
             ],
             tiles: [
               {id: this.ids[0], content: Img1, cardClass: 'facedown', faceup: false},
@@ -164,8 +177,6 @@ class MemoryGame extends Component {
     }
 
     switchPlayers = () => {
-        console.log('players just played');
-        console.log(this.state.players[this.state.activePlayer]);
         this.state.players[this.state.activePlayer].hasTurn = false;
         let i = this.state.activePlayer;
         let l = this.state.players.length - 1;
@@ -175,10 +186,7 @@ class MemoryGame extends Component {
             i = 0;
         }
         this.setState({activePlayer: i})
-
-        console.log('players turn');
         this.state.players[this.state.activePlayer].hasTurn = true;
-        console.log(this.state.players[this.state.activePlayer]);
     }
 
     render() {
