@@ -64,7 +64,7 @@ class MemoryGame extends Component {
             let n = 'Player' + l2;
             this.state.players.push({id: l, name: n, score: 0, hasTurn: false})
             this.setState({players: this.state.players})
-            if (l === 9) {
+            if (l === 3) {
                 this.setState({addPlayerText: ''})
             }
         } 
@@ -86,20 +86,23 @@ class MemoryGame extends Component {
     endGame = () => {
         console.log('game over')
         let l = this.state.players;
+        let t = false;
         let winner = l[0];
         for (let i = 0; i < l.length; i++) {
             l[i].hasTurn = false;
             if (l[i].score > winner.score) {
                 winner = l[i]
             } 
-            // this doesn't account for ties between later players
-            // else if (l[i].score === winner.score && l[i] !== winner) {
-            //     for (let n = 0; n < l.length; n++) {
-            //         l[n].score = 'Tie Game. Play again';
-            //     }
-            //     return;
-            // }
         }
+        console.log('high score: ' + winner.score)
+        for (let i = 0; i < l.length; i++) {
+            if (l[i].score === winner.score && l[i].name !== winner.name) {
+                console.log('tied with high score: ' + l[i].name) 
+                l[i].score = 'Tie';
+                t = true
+            }
+        }
+        if (t) {winner.score = 'Tie'; return}
         console.log(winner)
         winner.score = 'W';
         winner.hasTurn = true;
